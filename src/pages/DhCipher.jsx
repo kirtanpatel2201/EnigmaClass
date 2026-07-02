@@ -110,21 +110,28 @@ export default function DhCipher() {
        </div>
     );
 
-    const EveBox = ({ title, children, icon, active = true }) => (
+    const EveBox = ({ title, children, icon, active = true, animatedTrack = null }) => (
        <div style={{
           border: active ? '1px solid rgba(239, 68, 68, 0.5)' : '1px solid var(--border-color)', 
           background: active ? 'rgba(239, 68, 68, 0.05)' : 'transparent', 
-          padding: '24px', borderRadius: '12px', flex: 1, 
+          padding: '24px 12px', borderRadius: '12px', flex: 1, 
           display: 'flex', flexDirection: 'column', transition: 'all 0.3s',
-          textAlign: 'center'
+          textAlign: 'center', position: 'relative'
        }}>
           <div style={{fontSize:'0.85rem', color: active ? '#fca5a5' : 'var(--text-muted)', fontWeight:'600', textTransform:'uppercase', letterSpacing:'1px', marginBottom:'16px', display:'flex', alignItems:'center', justifyContent:'center', gap:'8px'}}>
              {icon && <span>{icon}</span>}
              {title}
           </div>
-          <div style={{color:'var(--text-primary)', fontSize:'0.95rem', lineHeight:'1.6'}}>
+          
+          <div style={{color:'var(--text-primary)', fontSize:'0.95rem', lineHeight:'1.6', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
              {children}
           </div>
+
+          {animatedTrack && (
+             <div style={{width: '100%', height: '2px', background: active ? 'rgba(239, 68, 68, 0.3)' : 'rgba(255,255,255,0.1)', position: 'relative', marginTop: '24px'}}>
+                {animatedTrack}
+             </div>
+          )}
        </div>
     );
 
@@ -148,7 +155,16 @@ export default function DhCipher() {
           "Step 1: Public Agreement",
           "Alice and Bob must first agree on the public parameters to use for the exchange.",
           <AliceBox title="Alice" active={false}>Waiting for agreement...</AliceBox>,
-          <EveBox title="Public Network (Eve)" active={true} icon="🌐">
+          <EveBox title="Public Network (Eve)" active={true} icon="🌐" animatedTrack={
+             <motion.div 
+                initial={{left: 0, opacity: 0}}
+                animate={{left: '100%', opacity: [0, 1, 1, 0]}}
+                transition={{duration: 2.5, ease: "linear", repeat: Infinity, repeatDelay: 0.5}}
+                style={{position: 'absolute', top: '-14px', transform: 'translateX(-50%)', background: 'rgba(239, 68, 68, 0.15)', border: '1px solid #ef4444', color: '#fff', padding: '2px 8px', borderRadius: '4px', fontSize: '0.75rem', whiteSpace: 'nowrap'}}
+             >
+                p={p}, g={g} ➔
+             </motion.div>
+          }>
              <div style={{fontFamily:'var(--font-mono)', fontSize:'1.2rem', marginBottom:'12px'}}>
                 Prime (p) = {p}<br/>
                 Base (g) = {g}
@@ -167,7 +183,16 @@ export default function DhCipher() {
              <div style={{color:'#3b82f6', marginBottom:'8px'}}>🔒 Secret (a) = {a}</div>
              <div style={{fontSize:'0.85rem', color:'var(--text-muted)', fontFamily:'var(--font-sans)'}}>Stored securely on Alice's device.</div>
           </AliceBox>,
-          <EveBox title="Public Network (Eve)" active={false} icon="🌐">
+          <EveBox title="Public Network (Eve)" active={false} icon="🌐" animatedTrack={
+             <motion.div 
+                initial={{left: 0, opacity: 0}}
+                animate={{left: '100%', opacity: [0, 0.5, 0.5, 0]}}
+                transition={{duration: 3, ease: "linear", repeat: Infinity}}
+                style={{position: 'absolute', top: '-10px', transform: 'translateX(-50%)', fontSize: '0.8rem', color: 'rgba(255,255,255,0.3)'}}
+             >
+                ➤
+             </motion.div>
+          }>
              <div style={{fontSize:'0.85rem', color:'var(--text-muted)'}}>
                 Eve only sees p={p}, g={g}.<br/><br/>She has absolutely no knowledge of Alice's or Bob's secrets.
              </div>
@@ -186,7 +211,16 @@ export default function DhCipher() {
              A = {g}<sup style={{color:'#3b82f6'}}>{a}</sup> mod {p}<br/><br/>
              <strong style={{fontSize:'1.2rem'}}>A = {A}</strong>
           </AliceBox>,
-          <EveBox title="Public Network (Eve)" active={false} icon="🌐">
+          <EveBox title="Public Network (Eve)" active={false} icon="🌐" animatedTrack={
+             <motion.div 
+                initial={{left: 0, opacity: 0}}
+                animate={{left: '100%', opacity: [0, 0.5, 0.5, 0]}}
+                transition={{duration: 3, ease: "linear", repeat: Infinity}}
+                style={{position: 'absolute', top: '-10px', transform: 'translateX(-50%)', fontSize: '0.8rem', color: 'rgba(255,255,255,0.3)'}}
+             >
+                ➤
+             </motion.div>
+          }>
              <div style={{fontSize:'0.85rem', color:'var(--text-muted)'}}>
                 Eve is listening to the network, waiting for the mixes to be transmitted...
              </div>
