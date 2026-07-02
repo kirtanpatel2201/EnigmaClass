@@ -394,9 +394,11 @@ export default function DhCipher() {
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 10px', flex: 1 }}>
                     
                     {/* PREV BUTTON */}
-                    <button className="btn-secondary" style={{width: 'auto', padding: '10px 16px', opacity: currentStep === 0 ? 0 : 1, pointerEvents: currentStep === 0 ? 'none' : 'auto'}} onClick={handlePrev}>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                    </button>
+                    <div style={{ width: '80px', height: '70px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center' }}>
+                      <button className="btn-secondary" style={{width: '100%', padding: '10px 16px', opacity: currentStep === 0 ? 0 : 1, pointerEvents: currentStep === 0 ? 'none' : 'auto'}} onClick={handlePrev}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                      </button>
+                    </div>
 
                     {/* CENTRAL CONTENT */}
                     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 24px' }}>
@@ -415,7 +417,7 @@ export default function DhCipher() {
                     </div>
 
                     {/* NEXT BUTTON & AUTO SCROLL */}
-                    <div style={{display:'flex', flexDirection:'column', gap:'8px', alignItems:'center'}}>
+                    <div style={{width: '80px', height: '70px', display:'flex', flexDirection:'column', gap:'8px', alignItems:'center', justifyContent: 'flex-start'}}>
                       <button className="btn-primary" style={{width: '100%', padding: '10px 16px', opacity: currentStep === totalSteps - 1 ? 0 : 1, pointerEvents: currentStep === totalSteps - 1 ? 'none' : 'auto'}} onClick={handleNext}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                       </button>
