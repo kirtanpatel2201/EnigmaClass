@@ -373,7 +373,7 @@ export default function DhCipher() {
             transition={{ duration: 0.4 }}
             style={{ flex: 1, display: 'flex', flexDirection: 'column' }}
           >
-            <div className="anim-studio" ref={studioRef} style={{ marginTop: '0', flex: 1, height: '600px', maxHeight: '600px', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+            <div className="anim-studio" ref={studioRef} style={{ marginTop: '0', flex: 'none', height: '550px', minHeight: '550px', maxHeight: '550px', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
                 <div className="anim-title">Diffie-Hellman Interactive Classroom</div>
                 
                 <div style={{ flex: 1, display: 'flex', flexDirection: 'column', position: 'relative' }}>
