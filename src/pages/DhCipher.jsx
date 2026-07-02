@@ -136,7 +136,7 @@ export default function DhCipher() {
         </div>
         <div style={{display:'flex', gap:'20px', alignItems:'stretch', height:'280px'}}>
            <div style={{flex: 1, display:'flex'}}>{alice}</div>
-           {eve && <div style={{flex: 1.2, display:'flex', position: 'relative'}}>{eve}</div>}
+           {eve && <div style={{flex: 1.5, display:'flex', position: 'relative'}}>{eve}</div>}
            <div style={{flex: 1, display:'flex'}}>{bob}</div>
         </div>
       </div>
@@ -225,7 +225,7 @@ export default function DhCipher() {
                 boxShadow: '0 0 20px rgba(16, 185, 129, 0.2)'
              }}>
              <div style={{fontSize: '2rem', marginBottom: '12px'}}>✅</div>
-             <div style={{color: '#10b981', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '16px', fontSize: '0.9rem', lineHeight: '1.4'}}>
+             <div style={{color: '#10b981', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '16px', fontSize: '0.9rem', lineHeight: '1.4', whiteSpace: 'nowrap'}}>
                 Secure Key Exchange Successful
              </div>
              <div style={{fontFamily: 'var(--font-mono)', fontSize: '1.2rem', color: '#fff'}}>
