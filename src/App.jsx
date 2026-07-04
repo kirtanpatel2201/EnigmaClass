@@ -12,6 +12,8 @@ import PlayfairCipher from './pages/PlayfairCipher';
 import OtpCipher from './pages/OtpCipher';
 import RsaCipher from './pages/RsaCipher';
 import DhCipher from './pages/DhCipher';
+import AesCipher from './pages/AesCipher';
+import DesCipher from './pages/DesCipher';
 
 function App() {
   return (
@@ -30,6 +32,8 @@ function App() {
             <Route path="/otp" element={<OtpCipher />} />
             <Route path="/rsa" element={<RsaCipher />} />
             <Route path="/dh" element={<DhCipher />} />
+            <Route path="/aes" element={<AesCipher />} />
+            <Route path="/des" element={<DesCipher />} />
           </Routes>
           <Footer />
         </main>

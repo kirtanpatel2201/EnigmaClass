@@ -3,23 +3,20 @@
 
 🔥 [View Live Application](https://enigmaclassx.vercel.app/)
 
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+![React 19](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Vite 8](https://img.shields.io/badge/Vite_8-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Tailwind CSS 4](https://img.shields.io/badge/Tailwind_4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)
 
 ## Table of Contents
 - [Project Philosophy](#project-philosophy)
 - [Why EnigmaClass?](#why-enigmaclass)
-- [Feature Comparison](#feature-comparison)
 - [Architecture & Data Flow](#architecture--data-flow)
 - [Supported Cryptographic Algorithms](#supported-cryptographic-algorithms)
 - [Technology Stack](#technology-stack)
 - [Project Structure](#project-structure)
 - [Installation & Usage](#installation--usage)
-- [Browser Compatibility](#browser-compatibility)
 - [Frequently Asked Questions (FAQ)](#frequently-asked-questions-faq)
-- [Roadmap](#roadmap)
 - [License](#license)
 - [Author](#author)
 
@@ -28,90 +25,81 @@
 ## Project Philosophy
 Cryptography is often taught through dry mathematical formulas or command-line tools that obscure the actual mechanics of data transformation. EnigmaClass exists to bridge the gap between theoretical cryptography and practical understanding by providing a visually rich, interactive sandbox. 
 
-By shifting cryptographic execution to the client's browser, EnigmaClass allows students, developers, and security enthusiasts to see exactly how ciphers manipulate text in real-time without needing complex backend setups.
+By shifting cryptographic execution entirely to the client's browser, EnigmaClass allows students, developers, and security enthusiasts to see exactly how ciphers manipulate text in real-time, step-by-step, without needing complex backend setups.
 
 ## Why EnigmaClass?
 Traditional learning methods for cryptography usually involve reading textbooks or running Python scripts. EnigmaClass flips this model:
-- **Everything executes instantly in the browser.**
-- **No backend servers are required.**
-- **Immediate visual feedback on encryption/decryption steps.**
-- **A unified dashboard for both historical and modern algorithms.**
-
-By marrying a modern React UI with raw cryptographic algorithms, this system ensures that learning complex security concepts is accessible, engaging, and fast.
-
-## Feature Comparison
-| Feature | EnigmaClass | CLI Tools | Textbooks |
-| :--- | :---: | :---: | :---: |
-| **Real-Time Visual Execution** | ✅ | ❌ | ❌ |
-| **Interactive UI/UX** | ✅ | ❌ | ❌ |
-| **Zero Setup Required (Web)** | ✅ | ❌ | ✅ |
-| **Historical & Modern Ciphers** | ✅ | ✅ | ✅ |
-| **Client-Side Processing** | ✅ | ✅ | N/A |
-
+- **Interactive Classrooms (Anim-Studio):** Every single cipher features a step-by-step, auto-scrolling visual classroom built with Framer Motion to demonstrate the exact mathematical transformations happening under the hood.
+- **Zero Backend Servers Required:** Everything executes instantly in the browser memory.
+- **Step-by-Step Execution:** Users click to initiate the encryption process, which visually walks through the algorithm frame-by-frame before revealing the final output.
 
 ## Architecture & Data Flow
 
-### Real-Time Cipher Execution Flow
-Data never leaves the browser. All transformations are purely mathematical functions executed locally.
+### Real-Time Cipher & Animation Flow
+Data never leaves the browser. The system separates raw cryptographic logic (`crypto.js`) from visual state management inside the React components.
 
 ```mermaid
 sequenceDiagram
     autonumber
     actor User
-    participant Browser as Client Browser (React State)
-    participant CryptoEngine as Cipher Logic Engine
+    participant UI as React Component
+    participant Logic as Mathematical Logic
+    participant AnimStudio as Anim-Studio (Framer Motion)
 
-    User->>Browser: Enter Plaintext & Cipher Key
+    User->>UI: Enter Plaintext & Cipher Key
+    User->>UI: Click "Encrypt & Animate"
+    UI->>Logic: Process text array (inline or via crypto.js)
+    Logic-->>UI: Generate intermediate Frame Data
     rect rgba(0, 200, 255, 0.1)
-    Browser->>CryptoEngine: Invoke Algorithm (e.g., Playfair)
-    CryptoEngine->>CryptoEngine: Generate Key Matrix / Perform Shifts
-    CryptoEngine->>CryptoEngine: Transform Plaintext to Ciphertext
+    UI->>AnimStudio: Feed Frame Data sequentially (currentStep)
+    AnimStudio-->>User: Render Step-by-Step Visual Transformation
     end
-    CryptoEngine-->>Browser: Return Ciphertext Result
-    Browser-->>User: Display Encrypted Text Immediately
+    UI-->>User: Reveal Final Ciphertext upon completion
 ```
 
 ## Supported Cryptographic Algorithms
 
-EnigmaClass supports a comprehensive suite of algorithms ranging from ancient Roman ciphers to modern Public-Key infrastructure.
-
 **Classical Ciphers**
-- **Caesar Cipher:** Simple substitution cipher using alphabet shifts.
-- **Vigenère Cipher:** Polyalphabetic substitution using a keyword.
-- **Hill Cipher:** Polygraphic substitution based on linear algebra and matrices.
-- **Rail Fence Cipher:** Transposition cipher using a zig-zag pattern.
+- **Caesar Cipher:** Simple substitution cipher using alphabet shifts (Modulo 26).
+- **Vigenère Cipher:** Polyalphabetic substitution using a repeating keyword.
+- **Hill Cipher:** Polygraphic substitution utilizing linear algebra and matrix inversion.
+- **Rail Fence Cipher:** Transposition cipher using a zig-zag grid pattern.
 - **Playfair Cipher:** Manual symmetric encryption using a 5x5 key matrix.
 
 **Modern Cryptography**
-- **RSA (Rivest–Shamir–Adleman):** Asymmetric public-key encryption utilizing prime number factorization.
-- **Diffie-Hellman:** Key exchange protocol for establishing a shared secret over an insecure channel.
-- **One-Time Pad (OTP):** The only mathematically unbreakable encryption technique, using a pre-shared random key.
+- **AES (Advanced Encryption Standard):** The current global standard for symmetric encryption, visualized step-by-step through SubBytes, ShiftRows, MixColumns, and AddRoundKey matrix operations.
+- **DES (Data Encryption Standard):** Historic symmetric-key algorithm based on the Feistel Network, featuring animated S-Box substitutions and P-Box permutations.
+- **RSA (Rivest–Shamir–Adleman):** Asymmetric public-key encryption utilizing prime number generation and modular exponentiation.
+- **Diffie-Hellman:** Key exchange protocol for establishing a shared secret over an insecure channel, featuring two-way visual network traffic.
+- **One-Time Pad (OTP):** Mathematically unbreakable symmetric encryption using a pre-shared random key.
 
 ## Technology Stack
 **Frontend & UI**
-- HTML5 / CSS3
-- Tailwind CSS (Utility-first styling)
-- React 19 / Vite
-- React Router DOM (Client-side routing)
-- Lucide React (Icons)
-- Framer Motion (Animations)
+- React 19
+- Vite 8
+- Tailwind CSS 4.3 (Utility-first styling)
+- Framer Motion 12.4 (Complex UI Animations & Step transitions)
+- Lucide React (Iconography)
+- React Router DOM 7 (Client-side routing)
 
-**Core Logic**
-- Vanilla JavaScript Math & String Manipulation
-- Client-Side Cryptographic implementations
+**Core Logic & Tooling**
+- Vanilla JavaScript Math (Shared between inline component logic and `src/lib/crypto.js`)
+- Oxlint (High-performance JavaScript linter)
 
 ## Project Structure
 ```text
 EnigmaClass
 │
-├── public/                # Static assets
+├── public/                # Static assets (Favicons, etc.)
 ├── src/
-│   ├── components/        # UI Components (Sidebar, Header, Footer)
-│   ├── pages/             # Cipher Route Pages (Caesar, RSA, etc.)
-│   ├── App.jsx            # Main React Routing 
-│   └── main.jsx           # React Entry
+│   ├── components/        # Shared UI Components (Sidebar, Header, Footer)
+│   ├── lib/               # crypto.js (Raw mathematical cipher algorithms)
+│   ├── pages/             # Cipher Route Pages (CaesarCipher.jsx, RsaCipher.jsx, etc.)
+│   ├── App.jsx            # Main React Router configuration
+│   ├── index.css          # Global CSS and structural styles (.anim-studio, etc.)
+│   └── main.jsx           # React Entry Point
 ├── index.html           
-├── tailwind.config.js     
+├── package.json     
 ├── vite.config.js       
 └── README.md            
 ```
@@ -129,20 +117,9 @@ Install dependencies and run:
 # Install all dependencies
 npm install
 
-# Start the local development server
+# Start the Vite local development server
 npm run dev
 ```
-
-## Browser Compatibility
-EnigmaClass relies on standard JavaScript ES6+ features and runs smoothly on all modern browsers.
-
-| Browser | Minimum Version | Supported |
-| :--- | :---: | :---: |
-| Google Chrome | 60+ | ✅ |
-| Mozilla Firefox | 60+ | ✅ |
-| Microsoft Edge | 79+ | ✅ |
-| Safari | 12+ | ✅ |
-| Brave | 1.0+ | ✅ |
 
 ## Frequently Asked Questions (FAQ)
 
@@ -150,19 +127,7 @@ EnigmaClass relies on standard JavaScript ES6+ features and runs smoothly on all
 No. EnigmaClass is a purely client-side application. Any text you encrypt or decrypt is processed exclusively within your browser's memory and is never transmitted to a server.
 
 **Are the modern algorithms (like RSA) safe for production use?**  
-The implementations provided in EnigmaClass are designed for **educational purposes** to demonstrate the underlying mathematics. For production applications, always use established libraries like the native WebCrypto API or OpenSSL.
-
-**Can I contribute a new cipher?**  
-Absolutely! Feel free to fork the repository and submit a pull request with new algorithms.
-
-## Roadmap
-**Planned Features & Priorities**
-- ✅ Core Classical Ciphers (Caesar, Vigenère)
-- ✅ Advanced Classical Ciphers (Hill, Playfair)
-- ✅ Modern Algorithms (RSA, Diffie-Hellman)
-- 🔄 Step-by-Step Visualization Mode (Show the math in real-time)
-- 🔄 AES & DES Educational implementations
-- 🔄 Dark/Light Mode Toggle
+The implementations provided in EnigmaClass are designed strictly for **educational purposes** to visually demonstrate the underlying mathematics. For production applications, always use established libraries like the native WebCrypto API or OpenSSL.
 
 ## License
 This project is licensed under the MIT License.
