@@ -15,6 +15,7 @@ import DhCipher from './pages/DhCipher';
 import AesCipher from './pages/AesCipher';
 import DesCipher from './pages/DesCipher';
 import Sha512Cipher from './pages/Sha512Cipher';
+import BlockCipherModes from './pages/BlockCipherModes';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
             <Route path="/aes" element={<AesCipher />} />
             <Route path="/des" element={<DesCipher />} />
             <Route path="/sha512" element={<Sha512Cipher />} />
+            <Route path="/modes" element={<BlockCipherModes />} />
           </Routes>
           <Footer />
         </main>
