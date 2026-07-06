@@ -197,7 +197,7 @@ export default function AesCipher() {
   };
 
   const renderOverviewDiagram = () => (
-    <div className="flowchart-scale-wrapper" style={{ display: 'flex', gap: '40px', alignItems: 'flex-start', width: '100%' }}>
+    <div style={{ display: 'flex', gap: '40px', alignItems: 'flex-start', width: '100%' }}>
       
       {/* Left Column: Flowchart */}
       <div style={{ flex: '0 0 60%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -359,7 +359,7 @@ export default function AesCipher() {
 
       {activeTab === 'overview' && (
         <div style={{ width: '100%' }}>
-          <div className="glass-card" style={{ padding: '40px' }}>
+          <div className="glass-card scalable-card" style={{ padding: '40px' }}>
             <div className="card-title">AES High-Level Pipeline</div>
             <p style={{ color: 'var(--text-muted)', marginBottom: '40px', textAlign: 'center', fontSize: '1.1rem' }}>Interact with the flow diagram on the left to read about its architectural purpose on the right.</p>
             {renderOverviewDiagram()}
