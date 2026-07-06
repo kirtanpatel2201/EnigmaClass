@@ -558,13 +558,11 @@ input[type="range"]::-webkit-slider-thumb {
 /* Scale up Flowcharts on Large Monitors */
 @media (min-width: 1600px) {
   .flowchart-scale-wrapper {
-    transform: scale(1.15);
-    transform-origin: top center;
+    zoom: 1.15;
   }
 }
 @media (min-width: 2200px) {
   .flowchart-scale-wrapper {
-    transform: scale(1.4);
-    transform-origin: top center;
+    zoom: 1.4;
   }
 }
