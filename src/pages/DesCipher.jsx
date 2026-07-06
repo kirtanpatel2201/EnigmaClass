@@ -112,7 +112,7 @@ export default function DesCipher() {
   };
 
   const renderOverviewDiagram = () => (
-    <div style={{ display: 'flex', gap: '40px', alignItems: 'flex-start', width: '100%' }}>
+    <div className="flowchart-scale-wrapper" style={{ display: 'flex', gap: '40px', alignItems: 'flex-start', width: '100%' }}>
       
       {/* Left Column: Flowchart */}
       <div style={{ flex: '0 0 60%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
