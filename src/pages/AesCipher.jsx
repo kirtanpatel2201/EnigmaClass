@@ -201,7 +201,7 @@ export default function AesCipher() {
       
       {/* Left Column: Flowchart */}
       <div style={{ flex: '0 0 60%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ display: 'flex', gap: '40px', alignItems: 'flex-start', justifyContent: 'center', width: '100%' }}>
+        <div style={{ display: 'flex', gap: '40px', alignItems: 'flex-start', justifyContent: 'center', width: '100%', position: 'relative', zIndex: 1 }}>
           
           {/* Main Data Flow Column */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '350px', flexShrink: 0 }}>
