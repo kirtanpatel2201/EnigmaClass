@@ -321,7 +321,7 @@ export default function AesCipher() {
       </div>
 
       {/* Right Column: Sticky Explanation Panel with extended height to prevent clipping and fit more content */}
-      <div style={{ flex: '0 0 40%', position: 'sticky', top: '100px', background: 'var(--bg-surface)', padding: '32px', borderRadius: '12px', border: '1px solid var(--border-color)', boxShadow: '0 10px 30px rgba(0,0,0,0.2)', height: '80vh', overflowY: 'auto' }}>
+      <div className="no-scrollbar" style={{ flex: '0 0 40%', position: 'sticky', top: '100px', background: 'var(--bg-surface)', padding: '32px', borderRadius: '12px', border: '1px solid var(--border-color)', boxShadow: '0 10px 30px rgba(0,0,0,0.2)', height: '80vh', overflowY: 'auto' }}>
         <h3 style={{ color: 'var(--accent-color)', marginBottom: '16px', fontSize: '1.4rem' }}>{selectedNode}</h3>
         {selectedNode === 'Plaintext' && <p style={{ color: 'var(--text-muted)', lineHeight: '1.7', fontSize: '0.95rem' }}><strong>What it is:</strong> The raw, unencrypted 128-bit block of data.<br/><br/><strong>Why it matters:</strong> AES strictly operates on 128-bit chunks. If your message is smaller or larger, it must be padded or split. By itself, this data is completely exposed.</p>}
         {selectedNode === 'State Matrix Creation' && <p style={{ color: 'var(--text-muted)', lineHeight: '1.7', fontSize: '0.95rem' }}><strong>What it is:</strong> AES takes the linear 16 bytes of plaintext and maps them into a 4x4 grid (State Matrix).<br/><br/><strong>Why it matters:</strong> Cryptography requires complex mixing. By placing the bytes into a 2D matrix, AES can perform matrix multiplications (MixColumns) and row rotations (ShiftRows) that rapidly scramble the data far better than operating on a flat line.</p>}

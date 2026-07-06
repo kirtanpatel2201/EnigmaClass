@@ -244,7 +244,7 @@ export default function DesCipher() {
       </div>
 
       {/* Right Column: Sticky Explanation Panel with extended height */}
-      <div style={{ flex: '0 0 40%', position: 'sticky', top: '100px', background: 'var(--bg-surface)', padding: '32px', borderRadius: '12px', border: '1px solid var(--border-color)', boxShadow: '0 10px 30px rgba(0,0,0,0.2)', height: '80vh', overflowY: 'auto' }}>
+      <div className="no-scrollbar" style={{ flex: '0 0 40%', position: 'sticky', top: '100px', background: 'var(--bg-surface)', padding: '32px', borderRadius: '12px', border: '1px solid var(--border-color)', boxShadow: '0 10px 30px rgba(0,0,0,0.2)', height: '80vh', overflowY: 'auto' }}>
         <h3 style={{ color: 'var(--accent-color)', marginBottom: '16px', fontSize: '1.4rem' }}>{selectedNode}</h3>
         {selectedNode === 'Plaintext' && <p style={{ color: 'var(--text-muted)', lineHeight: '1.7', fontSize: '0.95rem' }}><strong>What it is:</strong> A 64-bit block of unencrypted data.<br/><br/><strong>Why it matters:</strong> DES is a block cipher that requires data to be split into exact 64-bit chunks. If a message is shorter, it gets padded. This raw data is completely readable.</p>}
         {selectedNode === 'Initial Permutation' && <p style={{ color: 'var(--text-muted)', lineHeight: '1.7', fontSize: '0.95rem' }}><strong>What it is:</strong> A fixed wiring logic that physically shuffles the 64 bits into a different order.<br/><br/><strong>Why it matters:</strong> Cryptographically, this provides <em>no security</em>! It was originally designed to optimize data loading into 8-bit hardware buses back in the 1970s. It is completely public and reversible.</p>}
