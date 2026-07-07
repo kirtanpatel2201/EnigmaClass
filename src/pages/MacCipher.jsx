@@ -89,9 +89,9 @@ const MacCipher = () => {
                   </marker>
                 </defs>
 
-                {/* Bounding Boxes */}
-                <BoundingBox x={30} y={60} width={450} height={520} label="SENDER" />
-                <BoundingBox x={540} y={60} width={630} height={520} label="RECEIVER" />
+                {/* Bounding Boxes (Taller & wider) */}
+                <BoundingBox x={30} y={40} width={470} height={580} label="SENDER" />
+                <BoundingBox x={530} y={40} width={630} height={580} label="RECEIVER" />
 
                 {/* ── SENDER ── */}
                 <RectNode x={180} y={100} width={150} height={60} text="Message" type="message" nodeName="Message" />
@@ -129,75 +129,70 @@ const MacCipher = () => {
                 {/* ── RECEIVER RIGHT SIDE ── */}
                 <RectNode x={740} y={100} width={150} height={60} text="Message"       type="message" nodeName="Message" />
                 <RectNode x={740} y={240} width={150} height={80} text="MAC|Algorithm" type="algo"    nodeName="MAC Algorithm" />
-                <RectNode x={910} y={260} width={100} height={40} text="Key"           type="key"     nodeName="Shared Key" />
+                <RectNode x={930} y={260} width={100} height={40} text="Key"           type="key"     nodeName="Shared Key" />
 
                 {/* Split from receiver packet */}
                 <polyline points="595,250 595,130 740,130" className="flow-line" markerEnd="url(#arrowHead)" />
                 
                 {/* Receiver algo arrows */}
                 <line x1="815" y1="160" x2="815" y2="240" className="flow-line" markerEnd="url(#arrowHead)" />
-                <line x1="910" y1="280" x2="890" y2="280" className="flow-line" markerEnd="url(#arrowHead)" />
+                <line x1="930" y1="280" x2="890" y2="280" className="flow-line" markerEnd="url(#arrowHead)" />
 
-                {/* ── COMPARISON PANEL ── */}
-                {/* Panel background */}
-                <g transform="translate(560, 390)">
-                  <rect width={590} height={160} rx="12" fill="#0f1729" stroke="#334155" strokeWidth="1.5" />
-                  
-                  {/* Received MAC box */}
-                  <motion.g onClick={() => setActiveNode('Received MAC')} style={getGlow('Received MAC')}>
-                    <rect x={20} y={20} width={160} height={55} rx="8" fill="#78350F" stroke={getGlowStroke('Received MAC','#FBBF24')} strokeWidth={getGlowSW('Received MAC')} />
-                    <text x={100} y={40} fill="#FEF3C7" fontSize="12" textAnchor="middle" fontWeight="600">Received MAC</text>
-                    <text x={100} y={60} fill="#FBBF24" fontSize="11" textAnchor="middle">from packet</text>
-                  </motion.g>
+                {/* ── COMPARISON PANEL (Vertical flow, perfectly aligned) ── */}
+                
+                {/* Lines flowing into the MAC boxes */}
+                <polyline points="595,330 595,390 650,390 650,415" className="flow-line" markerEnd="url(#arrowHead)" />
+                <polyline points="815,320 815,390 1030,390 1030,415" className="flow-line" markerEnd="url(#arrowHead)" />
 
-                  {/* Computed MAC box */}
-                  <motion.g onClick={() => setActiveNode('Computed MAC')} style={getGlow('Computed MAC')}>
-                    <rect x={20} y={90} width={160} height={55} rx="8" fill="#78350F" stroke={getGlowStroke('Computed MAC','#FBBF24')} strokeWidth={getGlowSW('Computed MAC')} />
-                    <text x={100} y={110} fill="#FEF3C7" fontSize="12" textAnchor="middle" fontWeight="600">Computed MAC</text>
-                    <text x={100} y={130} fill="#FBBF24" fontSize="11" textAnchor="middle">re-calculated locally</text>
-                  </motion.g>
+                {/* Received MAC */}
+                <motion.g onClick={() => setActiveNode('Received MAC')} style={getGlow('Received MAC')}>
+                  <rect x={600} y={415} width={100} height={60} rx="8" fill="#78350F" stroke={getGlowStroke('Received MAC','#FBBF24')} strokeWidth={getGlowSW('Received MAC')} />
+                  <text x={650} y={440} fill="#FEF3C7" fontSize="14" textAnchor="middle" fontWeight="600">Recv MAC</text>
+                  <text x={650} y={460} fill="#FBBF24" fontSize="11" textAnchor="middle">from packet</text>
+                </motion.g>
 
-                  {/* Equal sign / Compare node */}
-                  <motion.g onClick={() => setActiveNode('Compare')} style={getGlow('Compare')}>
-                    <rect x={230} y={47} width={100} height={70} rx="8" fill="#4C1D95" stroke={getGlowStroke('Compare','#C084FC')} strokeWidth={getGlowSW('Compare')} />
-                    <text x={280} y={78} fill="#EDE9FE" fontSize="28" textAnchor="middle" fontWeight="bold">≟</text>
-                    <text x={280} y={104} fill="#C084FC" fontSize="11" textAnchor="middle">Compare</text>
-                  </motion.g>
+                {/* Computed MAC */}
+                <motion.g onClick={() => setActiveNode('Computed MAC')} style={getGlow('Computed MAC')}>
+                  <rect x={980} y={415} width={100} height={60} rx="8" fill="#78350F" stroke={getGlowStroke('Computed MAC','#FBBF24')} strokeWidth={getGlowSW('Computed MAC')} />
+                  <text x={1030} y={440} fill="#FEF3C7" fontSize="14" textAnchor="middle" fontWeight="600">Comp MAC</text>
+                  <text x={1030} y={460} fill="#FBBF24" fontSize="11" textAnchor="middle">calculated</text>
+                </motion.g>
 
-                  {/* Lines into compare */}
-                  <line x1="180" y1="47" x2="230" y2="82" className="flow-line-solid" stroke="#94A3B8" strokeWidth="1.5" markerEnd="url(#arrowHead)" />
-                  <line x1="180" y1="117" x2="230" y2="82" className="flow-line-solid" stroke="#94A3B8" strokeWidth="1.5" />
+                {/* Left to compare */}
+                <line x1="700" y1="445" x2="760" y2="445" className="flow-line-solid" stroke="#94A3B8" strokeWidth="2" markerEnd="url(#arrowHead)" />
+                
+                {/* Right to compare */}
+                <line x1="980" y1="445" x2="920" y2="445" className="flow-line-solid" stroke="#94A3B8" strokeWidth="2" markerEnd="url(#arrowHead)" />
 
-                  {/* No Match branch (left-down) */}
-                  <line x1="280" y1="47" x2="280" y2="20" stroke="#EF4444" strokeWidth="1.5" fill="none" />
-                  <polyline points="280,20 400,20" stroke="#EF4444" strokeWidth="1.5" fill="none" markerEnd="url(#arrowRed)" />
-                  <text x={350} y={12} fill="#EF4444" fontSize="13" fontWeight="bold" textAnchor="middle">✗ No Match</text>
+                {/* Equal sign / Compare node */}
+                <motion.g onClick={() => setActiveNode('Compare')} style={getGlow('Compare')}>
+                  <rect x={760} y={400} width={160} height={90} rx="12" fill="#4C1D95" stroke={getGlowStroke('Compare','#C084FC')} strokeWidth={getGlowSW('Compare')} />
+                  <text x={840} y={445} fill="#EDE9FE" fontSize="32" textAnchor="middle" fontWeight="bold">≟</text>
+                  <text x={840} y={470} fill="#C084FC" fontSize="14" textAnchor="middle">Compare</text>
+                </motion.g>
 
-                  {/* Match branch (right-down) */}
-                  <line x1="280" y1="117" x2="280" y2="140" stroke="#10B981" strokeWidth="1.5" fill="none" />
-                  <polyline points="280,140 400,140" stroke="#10B981" strokeWidth="1.5" fill="none" markerEnd="url(#arrowGreen)" />
-                  <text x={350} y={132} fill="#10B981" fontSize="13" fontWeight="bold" textAnchor="middle">✓ Match</text>
+                {/* Match / No Match branches */}
+                <line x1="840" y1="490" x2="840" y2="520" stroke="#94A3B8" strokeWidth="2" fill="none" />
+                
+                <polyline points="840,520 700,520 700,540" stroke="#EF4444" strokeWidth="2" fill="none" markerEnd="url(#arrowRed)" />
+                <text x={700} y={512} fill="#EF4444" fontSize="14" fontWeight="bold" textAnchor="middle">✗ No Match</text>
 
-                  {/* Reject */}
-                  <motion.g onClick={() => setActiveNode('Accept / Reject')} style={getGlow('Accept / Reject')}>
-                    <rect x={400} y={-5} width={150} height={50} rx="8" fill="#1a0606" stroke={getGlowStroke('Accept / Reject','#EF4444')} strokeWidth={getGlowSW('Accept / Reject')} />
-                    <text x={475} y={18} fill="#EF4444" fontSize="14" fontWeight="bold" textAnchor="middle">⛔ Reject</text>
-                    <text x={475} y={37} fill="#EF4444" fontSize="11" textAnchor="middle">Message dropped</text>
-                  </motion.g>
+                <polyline points="840,520 980,520 980,540" stroke="#10B981" strokeWidth="2" fill="none" markerEnd="url(#arrowGreen)" />
+                <text x={980} y={512} fill="#10B981" fontSize="14" fontWeight="bold" textAnchor="middle">✓ Match</text>
 
-                  {/* Accept */}
-                  <motion.g onClick={() => setActiveNode('Accept / Reject')} style={getGlow('Accept / Reject')}>
-                    <rect x={400} y={115} width={150} height={50} rx="8" fill="#061a12" stroke={getGlowStroke('Accept / Reject','#10B981')} strokeWidth={getGlowSW('Accept / Reject')} />
-                    <text x={475} y={138} fill="#10B981" fontSize="14" fontWeight="bold" textAnchor="middle">✅ Accept</text>
-                    <text x={475} y={157} fill="#10B981" fontSize="11" textAnchor="middle">Message trusted</text>
-                  </motion.g>
-                </g>
+                {/* Reject */}
+                <motion.g onClick={() => setActiveNode('Accept / Reject')} style={getGlow('Accept / Reject')}>
+                  <rect x={630} y={540} width={140} height={50} rx="8" fill="#1a0606" stroke={getGlowStroke('Accept / Reject','#EF4444')} strokeWidth={getGlowSW('Accept / Reject')} />
+                  <text x={700} y={563} fill="#EF4444" fontSize="14" fontWeight="bold" textAnchor="middle">⛔ Reject</text>
+                  <text x={700} y={580} fill="#EF4444" fontSize="11" textAnchor="middle">Message dropped</text>
+                </motion.g>
 
-                {/* Lines flowing into the Compare Panel */}
-                <line x1="815" y1="320" x2="815" y2="390" className="flow-line" />
-                <polyline points="815,390 640,390 640,410" className="flow-line" markerEnd="url(#arrowHead)" />
-
-                <polyline points="595,330 595,380 640,380 640,410" className="flow-line" markerEnd="url(#arrowHead)" />
+                {/* Accept */}
+                <motion.g onClick={() => setActiveNode('Accept / Reject')} style={getGlow('Accept / Reject')}>
+                  <rect x={910} y={540} width={140} height={50} rx="8" fill="#061a12" stroke={getGlowStroke('Accept / Reject','#10B981')} strokeWidth={getGlowSW('Accept / Reject')} />
+                  <text x={980} y={563} fill="#10B981" fontSize="14" fontWeight="bold" textAnchor="middle">✅ Accept</text>
+                  <text x={980} y={580} fill="#10B981" fontSize="11" textAnchor="middle">Message trusted</text>
+                </motion.g>
 
               </svg>
             </div>
