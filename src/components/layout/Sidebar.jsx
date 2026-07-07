@@ -65,6 +65,16 @@ export default function Sidebar() {
           <span>One Time Pad</span>
         </NavLink>
 
+        <div className="menu-category">Cryptography Overview</div>
+        
+        <NavLink to="/cryptography-types" className={navLinkClass}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          <span>Cryptography Types</span>
+        </NavLink>
+
         <div className="menu-category">Modern & Math</div>
         
         <NavLink to="/rsa" className={navLinkClass}>
@@ -130,6 +140,34 @@ export default function Sidebar() {
               <polyline points="10 9 9 9 8 9"></polyline>
           </svg>
           <span>SHA-512 Hash</span>
+        </NavLink>
+      <div className="menu-category">Data Integrity & Signatures</div>
+        
+        <NavLink to="/mac" className={navLinkClass}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 9.9-1"></path>
+          </svg>
+          <span>MAC Algorithm</span>
+        </NavLink>
+
+        <NavLink to="/digital-signature" className={navLinkClass}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z"></path>
+            <path d="M14 3v5h5M16 13H8M16 17H8M10 9H8"></path>
+          </svg>
+          <span>Digital Signature</span>
+        </NavLink>
+
+        <div className="menu-category">Authentication & Protocols</div>
+
+        <NavLink to="/kerberos" className={navLinkClass}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            <path d="M12 8v4"></path>
+            <path d="M12 16h.01"></path>
+          </svg>
+          <span>Kerberos Protocol</span>
         </NavLink>
       </nav>
     </aside>

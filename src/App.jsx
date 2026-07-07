@@ -16,6 +16,10 @@ import AesCipher from './pages/AesCipher';
 import DesCipher from './pages/DesCipher';
 import Sha512Cipher from './pages/Sha512Cipher';
 import BlockCipherModes from './pages/BlockCipherModes';
+import CryptographyTypes from './pages/CryptographyTypes';
+import MacCipher from './pages/MacCipher';
+import Kerberos from './pages/Kerberos';
+import DigitalSignature from './pages/DigitalSignature';
 
 function App() {
   return (
@@ -38,6 +42,10 @@ function App() {
             <Route path="/des" element={<DesCipher />} />
             <Route path="/sha512" element={<Sha512Cipher />} />
             <Route path="/modes" element={<BlockCipherModes />} />
+            <Route path="/cryptography-types" element={<CryptographyTypes />} />
+            <Route path="/mac" element={<MacCipher />} />
+            <Route path="/kerberos" element={<Kerberos />} />
+            <Route path="/digital-signature" element={<DigitalSignature />} />
           </Routes>
           <Footer />
         </main>
