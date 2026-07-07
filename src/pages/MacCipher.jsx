@@ -90,10 +90,10 @@ const MacCipher = () => {
                 </defs>
 
                 {/* SENDER BOX (Center X = 230) */}
-                <BoundingBox x={40} y={50} width={380} height={550} label="SENDER" />
+                <BoundingBox x={40} y={50} width={380} height={600} label="SENDER" />
                 
                 {/* RECEIVER BOX (Center X = 885) */}
-                <BoundingBox x={600} y={50} width={570} height={550} label="RECEIVER" />
+                <BoundingBox x={600} y={50} width={570} height={600} label="RECEIVER" />
 
                 {/* INSECURE NETWORK ZONE */}
                 <g transform="translate(440, 90)">
