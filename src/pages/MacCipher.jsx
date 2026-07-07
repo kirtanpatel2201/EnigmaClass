@@ -89,109 +89,103 @@ const MacCipher = () => {
                   </marker>
                 </defs>
 
-                {/* Bounding Boxes (Taller & wider) */}
-                <BoundingBox x={30} y={40} width={470} height={580} label="SENDER" />
-                <BoundingBox x={530} y={40} width={630} height={580} label="RECEIVER" />
+                {/* SENDER BOX (Center X = 230) */}
+                <BoundingBox x={40} y={50} width={380} height={550} label="SENDER" />
+                
+                {/* RECEIVER BOX (Center X = 885) */}
+                <BoundingBox x={600} y={50} width={570} height={550} label="RECEIVER" />
 
-                {/* ── SENDER ── */}
-                <RectNode x={180} y={100} width={150} height={60} text="Message" type="message" nodeName="Message" />
-                <RectNode x={60}  y={260} width={100} height={40} text="Key"     type="key"     nodeName="Shared Key" />
-                <RectNode x={180} y={240} width={150} height={80} text="MAC|Algorithm" type="algo" nodeName="MAC Algorithm" />
-                <RectNode x={205} y={400} width={100} height={50} text="MAC"     type="mac"     nodeName="Generated MAC" />
+                {/* INSECURE NETWORK ZONE */}
+                <g transform="translate(440, 90)">
+                  <rect width={140} height={480} fill="none" stroke="#38BDF8" strokeWidth="2" strokeDasharray="4,4" rx="8" />
+                  <text x="70" y="-15" fill="#38BDF8" fontSize="14" fontWeight="bold" textAnchor="middle">Insecure Network</text>
+                </g>
 
-                {/* Packet box (sender) */}
-                <motion.g transform="translate(380, 250)" onClick={() => setActiveNode('Transmitted Packet')} style={getGlow('Transmitted Packet')}>
-                  <rect width={90} height={80} fill="#0C4A6E" stroke={getGlowStroke('Transmitted Packet','#38BDF8')} strokeWidth={getGlowSW('Transmitted Packet')} rx="6" />
-                  <text x={45} y={26} fill="#E0F2FE" fontSize="13" fontWeight="bold" textAnchor="middle">Message</text>
-                  <rect x={15} y={40} width={60} height={28} fill="#78350F" stroke="#FBBF24" strokeWidth="1" rx="4" />
-                  <text x={45} y={59} fill="#FEF3C7" fontSize="12" fontWeight="bold" textAnchor="middle">MAC</text>
+                {/* ── SENDER NODES ── */}
+                <RectNode x={155} y={100} width={150} height={60} text="Message" type="message" nodeName="Message" />
+                <RectNode x={50}  y={260} width={80}  height={40} text="Key"     type="key"     nodeName="Shared Key" />
+                <RectNode x={155} y={240} width={150} height={80} text="MAC|Algorithm" type="algo" nodeName="MAC Algorithm" />
+                <RectNode x={175} y={400} width={110} height={50} text="MAC"     type="mac"     nodeName="Generated MAC" />
+
+                {/* Sender Flow Lines */}
+                <line x1="230" y1="160" x2="230" y2="240" className="flow-line" markerEnd="url(#arrowHead)" />
+                <line x1="130" y1="280" x2="155" y2="280" className="flow-line" markerEnd="url(#arrowHead)" />
+                <line x1="230" y1="320" x2="230" y2="400" className="flow-line" markerEnd="url(#arrowHead)" />
+                <polyline points="305,130 400,130 400,250 460,250" className="flow-line" markerEnd="url(#arrowHead)" />
+                <polyline points="285,425 400,425 400,290 460,290" className="flow-line" markerEnd="url(#arrowHead)" />
+
+                {/* ── TRANSMITTED PACKET (Center X = 510) ── */}
+                <motion.g transform="translate(460, 230)" onClick={() => setActiveNode('Transmitted Packet')} style={getGlow('Transmitted Packet')}>
+                  <rect width={100} height={80} fill="#0C4A6E" stroke={getGlowStroke('Transmitted Packet','#38BDF8')} strokeWidth={getGlowSW('Transmitted Packet')} rx="8" />
+                  <text x={50} y={26} fill="#E0F2FE" fontSize="13" fontWeight="bold" textAnchor="middle">Message</text>
+                  <rect x={15} y={40} width={70} height={28} fill="#78350F" stroke="#FBBF24" strokeWidth="1" rx="4" />
+                  <text x={50} y={59} fill="#FEF3C7" fontSize="12" fontWeight="bold" textAnchor="middle">MAC</text>
                 </motion.g>
 
-                {/* Sender arrows */}
-                <line x1="255" y1="160" x2="255" y2="240" className="flow-line" markerEnd="url(#arrowHead)" />
-                <line x1="160" y1="280" x2="180" y2="280" className="flow-line" markerEnd="url(#arrowHead)" />
-                <line x1="255" y1="320" x2="255" y2="400" className="flow-line" markerEnd="url(#arrowHead)" />
-                <polyline points="255,130 360,130 360,290 380,290" className="flow-line" markerEnd="url(#arrowHead)" />
-                <polyline points="305,425 360,425 360,290" className="flow-line" />
+                {/* ── RECEIVER NODES ── */}
+                <RectNode x={810} y={100} width={150} height={60} text="Message"       type="message" nodeName="Message" />
+                <RectNode x={810} y={240} width={150} height={80} text="MAC|Algorithm" type="algo"    nodeName="MAC Algorithm" />
+                <RectNode x={1000} y={260} width={80} height={40} text="Key"           type="key"     nodeName="Shared Key" />
 
-                {/* ── TRANSMISSION ── */}
-                <line x1="470" y1="290" x2="550" y2="290" className="flow-line" markerEnd="url(#arrowHead)" />
-                <text x="510" y="275" fill="#64748B" fontSize="13" textAnchor="middle">Network</text>
+                {/* Receiver Extraction Lines */}
+                <polyline points="510,230 510,130 810,130" className="flow-line" markerEnd="url(#arrowHead)" />
+                <line x1="885" y1="160" x2="885" y2="240" className="flow-line" markerEnd="url(#arrowHead)" />
+                <line x1="1000" y1="280" x2="960" y2="280" className="flow-line" markerEnd="url(#arrowHead)" />
 
-                {/* Packet box (receiver) */}
-                <motion.g transform="translate(550, 250)" onClick={() => setActiveNode('Transmitted Packet')} style={getGlow('Transmitted Packet')}>
-                  <rect width={90} height={80} fill="#0C4A6E" stroke={getGlowStroke('Transmitted Packet','#38BDF8')} strokeWidth={getGlowSW('Transmitted Packet')} rx="6" />
-                  <text x={45} y={26} fill="#E0F2FE" fontSize="13" fontWeight="bold" textAnchor="middle">Message</text>
-                  <rect x={15} y={40} width={60} height={28} fill="#78350F" stroke="#FBBF24" strokeWidth="1" rx="4" />
-                  <text x={45} y={59} fill="#FEF3C7" fontSize="12" fontWeight="bold" textAnchor="middle">MAC</text>
-                </motion.g>
-
-                {/* ── RECEIVER RIGHT SIDE ── */}
-                <RectNode x={740} y={100} width={150} height={60} text="Message"       type="message" nodeName="Message" />
-                <RectNode x={740} y={240} width={150} height={80} text="MAC|Algorithm" type="algo"    nodeName="MAC Algorithm" />
-                <RectNode x={930} y={260} width={100} height={40} text="Key"           type="key"     nodeName="Shared Key" />
-
-                {/* Split from receiver packet */}
-                <polyline points="595,250 595,130 740,130" className="flow-line" markerEnd="url(#arrowHead)" />
+                {/* Packet MAC to Received MAC Box */}
+                <polyline points="510,310 510,445 685,445" className="flow-line" markerEnd="url(#arrowHead)" />
                 
-                {/* Receiver algo arrows */}
-                <line x1="815" y1="160" x2="815" y2="240" className="flow-line" markerEnd="url(#arrowHead)" />
-                <line x1="930" y1="280" x2="890" y2="280" className="flow-line" markerEnd="url(#arrowHead)" />
+                {/* Algorithm to Computed MAC Box */}
+                <polyline points="885,320 885,380 1035,380 1035,415" className="flow-line" markerEnd="url(#arrowHead)" />
 
-                {/* ── COMPARISON PANEL (Vertical flow, perfectly aligned) ── */}
+                {/* ── COMPARISON PANEL ── */}
                 
-                {/* Lines flowing into the MAC boxes */}
-                <polyline points="595,330 595,390 650,390 650,415" className="flow-line" markerEnd="url(#arrowHead)" />
-                <polyline points="815,320 815,390 1030,390 1030,415" className="flow-line" markerEnd="url(#arrowHead)" />
-
-                {/* Received MAC */}
+                {/* Received MAC (Center X = 735) */}
                 <motion.g onClick={() => setActiveNode('Received MAC')} style={getGlow('Received MAC')}>
-                  <rect x={600} y={415} width={100} height={60} rx="8" fill="#78350F" stroke={getGlowStroke('Received MAC','#FBBF24')} strokeWidth={getGlowSW('Received MAC')} />
-                  <text x={650} y={440} fill="#FEF3C7" fontSize="14" textAnchor="middle" fontWeight="600">Recv MAC</text>
-                  <text x={650} y={460} fill="#FBBF24" fontSize="11" textAnchor="middle">from packet</text>
+                  <rect x={685} y={415} width={100} height={60} rx="8" fill="#78350F" stroke={getGlowStroke('Received MAC','#FBBF24')} strokeWidth={getGlowSW('Received MAC')} />
+                  <text x={735} y={440} fill="#FEF3C7" fontSize="14" textAnchor="middle" fontWeight="600">Recv MAC</text>
+                  <text x={735} y={460} fill="#FBBF24" fontSize="11" textAnchor="middle">from packet</text>
                 </motion.g>
 
-                {/* Computed MAC */}
+                {/* Computed MAC (Center X = 1035) */}
                 <motion.g onClick={() => setActiveNode('Computed MAC')} style={getGlow('Computed MAC')}>
-                  <rect x={980} y={415} width={100} height={60} rx="8" fill="#78350F" stroke={getGlowStroke('Computed MAC','#FBBF24')} strokeWidth={getGlowSW('Computed MAC')} />
-                  <text x={1030} y={440} fill="#FEF3C7" fontSize="14" textAnchor="middle" fontWeight="600">Comp MAC</text>
-                  <text x={1030} y={460} fill="#FBBF24" fontSize="11" textAnchor="middle">calculated</text>
+                  <rect x={985} y={415} width={100} height={60} rx="8" fill="#78350F" stroke={getGlowStroke('Computed MAC','#FBBF24')} strokeWidth={getGlowSW('Computed MAC')} />
+                  <text x={1035} y={440} fill="#FEF3C7" fontSize="14" textAnchor="middle" fontWeight="600">Comp MAC</text>
+                  <text x={1035} y={460} fill="#FBBF24" fontSize="11" textAnchor="middle">calculated</text>
                 </motion.g>
 
-                {/* Left to compare */}
-                <line x1="700" y1="445" x2="760" y2="445" className="flow-line-solid" stroke="#94A3B8" strokeWidth="2" markerEnd="url(#arrowHead)" />
-                
-                {/* Right to compare */}
-                <line x1="980" y1="445" x2="920" y2="445" className="flow-line-solid" stroke="#94A3B8" strokeWidth="2" markerEnd="url(#arrowHead)" />
+                {/* Flow into Compare Box */}
+                <line x1="785" y1="445" x2="815" y2="445" className="flow-line-solid" stroke="#94A3B8" strokeWidth="2" markerEnd="url(#arrowHead)" />
+                <line x1="985" y1="445" x2="955" y2="445" className="flow-line-solid" stroke="#94A3B8" strokeWidth="2" markerEnd="url(#arrowHead)" />
 
-                {/* Equal sign / Compare node */}
+                {/* Compare Box (Center X = 885) */}
                 <motion.g onClick={() => setActiveNode('Compare')} style={getGlow('Compare')}>
-                  <rect x={760} y={400} width={160} height={90} rx="12" fill="#4C1D95" stroke={getGlowStroke('Compare','#C084FC')} strokeWidth={getGlowSW('Compare')} />
-                  <text x={840} y={445} fill="#EDE9FE" fontSize="32" textAnchor="middle" fontWeight="bold">≟</text>
-                  <text x={840} y={470} fill="#C084FC" fontSize="14" textAnchor="middle">Compare</text>
+                  <rect x={815} y={400} width={140} height={90} rx="12" fill="#4C1D95" stroke={getGlowStroke('Compare','#C084FC')} strokeWidth={getGlowSW('Compare')} />
+                  <text x={885} y={445} fill="#EDE9FE" fontSize="32" textAnchor="middle" fontWeight="bold">≟</text>
+                  <text x={885} y={470} fill="#C084FC" fontSize="14" textAnchor="middle">Compare</text>
                 </motion.g>
 
                 {/* Match / No Match branches */}
-                <line x1="840" y1="490" x2="840" y2="520" stroke="#94A3B8" strokeWidth="2" fill="none" />
+                <line x1="885" y1="490" x2="885" y2="520" stroke="#94A3B8" strokeWidth="2" fill="none" />
                 
-                <polyline points="840,520 700,520 700,540" stroke="#EF4444" strokeWidth="2" fill="none" markerEnd="url(#arrowRed)" />
-                <text x={700} y={512} fill="#EF4444" fontSize="14" fontWeight="bold" textAnchor="middle">✗ No Match</text>
+                <polyline points="885,520 735,520 735,540" stroke="#EF4444" strokeWidth="2" fill="none" markerEnd="url(#arrowRed)" />
+                <text x={735} y={512} fill="#EF4444" fontSize="14" fontWeight="bold" textAnchor="middle">✗ No Match</text>
 
-                <polyline points="840,520 980,520 980,540" stroke="#10B981" strokeWidth="2" fill="none" markerEnd="url(#arrowGreen)" />
-                <text x={980} y={512} fill="#10B981" fontSize="14" fontWeight="bold" textAnchor="middle">✓ Match</text>
+                <polyline points="885,520 1035,520 1035,540" stroke="#10B981" strokeWidth="2" fill="none" markerEnd="url(#arrowGreen)" />
+                <text x={1035} y={512} fill="#10B981" fontSize="14" fontWeight="bold" textAnchor="middle">✓ Match</text>
 
-                {/* Reject */}
+                {/* Reject Box (Center X = 735) */}
                 <motion.g onClick={() => setActiveNode('Accept / Reject')} style={getGlow('Accept / Reject')}>
-                  <rect x={630} y={540} width={140} height={50} rx="8" fill="#1a0606" stroke={getGlowStroke('Accept / Reject','#EF4444')} strokeWidth={getGlowSW('Accept / Reject')} />
-                  <text x={700} y={563} fill="#EF4444" fontSize="14" fontWeight="bold" textAnchor="middle">⛔ Reject</text>
-                  <text x={700} y={580} fill="#EF4444" fontSize="11" textAnchor="middle">Message dropped</text>
+                  <rect x={665} y={540} width={140} height={50} rx="8" fill="#1a0606" stroke={getGlowStroke('Accept / Reject','#EF4444')} strokeWidth={getGlowSW('Accept / Reject')} />
+                  <text x={735} y={563} fill="#EF4444" fontSize="14" fontWeight="bold" textAnchor="middle">⛔ Reject</text>
+                  <text x={735} y={580} fill="#EF4444" fontSize="11" textAnchor="middle">Message dropped</text>
                 </motion.g>
 
-                {/* Accept */}
+                {/* Accept Box (Center X = 1035) */}
                 <motion.g onClick={() => setActiveNode('Accept / Reject')} style={getGlow('Accept / Reject')}>
-                  <rect x={910} y={540} width={140} height={50} rx="8" fill="#061a12" stroke={getGlowStroke('Accept / Reject','#10B981')} strokeWidth={getGlowSW('Accept / Reject')} />
-                  <text x={980} y={563} fill="#10B981" fontSize="14" fontWeight="bold" textAnchor="middle">✅ Accept</text>
-                  <text x={980} y={580} fill="#10B981" fontSize="11" textAnchor="middle">Message trusted</text>
+                  <rect x={965} y={540} width={140} height={50} rx="8" fill="#061a12" stroke={getGlowStroke('Accept / Reject','#10B981')} strokeWidth={getGlowSW('Accept / Reject')} />
+                  <text x={1035} y={563} fill="#10B981" fontSize="14" fontWeight="bold" textAnchor="middle">✅ Accept</text>
+                  <text x={1035} y={580} fill="#10B981" fontSize="11" textAnchor="middle">Message trusted</text>
                 </motion.g>
 
               </svg>
