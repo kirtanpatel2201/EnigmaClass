@@ -172,7 +172,7 @@ const DigitalSignature = () => {
             </div>
           </div>
 
-          <div style={{ flex: '0 0 350px', position: 'sticky', top: '20px' }}>
+          <div style={{ flex: '0 0 360px', position: 'sticky', top: '20px' }}>
             <div style={{ width: '100%', background: 'var(--bg-surface)', padding: '24px', borderRadius: '12px', border: '1px solid var(--border-color)', boxShadow: '0 5px 20px rgba(0,0,0,0.15)' }}>
               <p style={{ color: 'var(--text-muted)', marginBottom: '16px', fontSize: '0.9rem', fontStyle: 'italic', textAlign: 'center' }}>Click any operator or box in the diagram to learn about its exact role.</p>
               <h3 style={{ color: 'var(--accent-color)', marginBottom: '12px', marginTop: 0, fontSize: '1.2rem' }}>{activeNode}</h3>

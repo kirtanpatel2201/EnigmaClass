@@ -77,8 +77,8 @@ const Kerberos = () => {
       <div className="flowchart-scale-wrapper" style={{ width: '100%' }}>
         <div style={{ display: 'flex', flexWrap: 'nowrap', gap: '40px', alignItems: 'flex-start', justifyContent: 'center', width: '100%', margin: '0 auto', padding: '0 20px', marginTop: '20px' }}>
           
-          <div style={{ width: '768px', height: '448px', flexShrink: 0 }}>
-            <div style={{ width: '1200px', height: '700px', position: 'relative', background: '#050B14', transform: 'scale(0.64)', transformOrigin: 'top left', borderRadius: '24px', border: '1px solid var(--border-color)', overflow: 'hidden' }}>
+          <div style={{ width: '800px', height: '466px', flexShrink: 0 }}>
+            <div style={{ width: '1200px', height: '700px', position: 'relative', background: '#050B14', transform: 'scale(0.666)', transformOrigin: 'top left', borderRadius: '24px', border: '1px solid var(--border-color)', overflow: 'hidden' }}>
               
               <svg width="1200" height="700" style={{ position: 'absolute', top: 0, left: 0 }}>
                 <defs>
@@ -124,7 +124,7 @@ const Kerberos = () => {
             </div>
           </div>
 
-          <div style={{ flex: '0 0 350px', position: 'sticky', top: '20px' }}>
+          <div style={{ flex: '0 0 360px', position: 'sticky', top: '20px' }}>
             <div style={{ width: '100%', background: 'var(--bg-surface)', padding: '24px', borderRadius: '12px', border: '1px solid var(--border-color)', boxShadow: '0 5px 20px rgba(0,0,0,0.15)' }}>
               <p style={{ color: 'var(--text-muted)', marginBottom: '16px', fontSize: '0.9rem', fontStyle: 'italic', textAlign: 'center' }}>Click any component or flow step in the diagram to learn about its exact role.</p>
               <h3 style={{ color: 'var(--accent-color)', marginBottom: '12px', marginTop: 0, fontSize: '1.2rem' }}>{activeNode}</h3>

@@ -120,6 +120,7 @@ body {
 /* SIDEBAR */
 .sidebar {
   width: 260px;
+  flex-shrink: 0;
   background-color: var(--bg-main);
   border-right: 1px solid var(--border-color);
   display: flex;
